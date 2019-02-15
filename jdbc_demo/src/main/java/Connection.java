@@ -10,5 +10,8 @@ public class Connection {
         Statement myStmt = myCon.createStatement();
 
         new DeleteQuery().deleteOrders(myStmt);
+
+        myStmt.close();
+        myCon.close();
     }
 }
