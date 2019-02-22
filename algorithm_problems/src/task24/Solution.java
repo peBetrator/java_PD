@@ -3,7 +3,7 @@ package task24;
 import java.util.LinkedList;
 
 public class Solution {
-    public static int moreCherries(int[][] arr) {
+    public int moreCherries(int[][] arr) {
         int cherries = 0;
         int steps = 0;
         LinkedList<Integer> storePosX = new LinkedList<>();
