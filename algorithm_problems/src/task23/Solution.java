@@ -4,6 +4,9 @@ import java.util.*;
 
 import static task23.Handlers.*;
 
+//TODO NEED IMPROVEMENTS
+// to try more examples and improve the algorithm itself
+
 public class Solution {
     public static int[] removeIt(int[] arr) {
         Set<Integer> elems = new HashSet<>();//sorted set of elements

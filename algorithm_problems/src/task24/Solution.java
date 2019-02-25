@@ -2,6 +2,9 @@ package task24;
 
 import java.util.LinkedList;
 
+//TODO NEED IMPROVEMENTS
+// to check all existing cherries and to store them in arrays for rows/columns for gathering maximum amount of cherries
+
 public class Solution {
     public int moreCherries(int[][] arr) {
         int cherries = 0;
