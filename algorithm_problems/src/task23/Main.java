@@ -1,4 +1,5 @@
 package task23;
+
 /*
 Given an array of n integers, determine the minimum amount of integers
 to be removed from the array so that the remaining array forms an ascending sequence
@@ -11,7 +12,13 @@ The following output should be displayed:
 public class Main {
     public static void main(String[] args) {
         int[] a = {2, 5, 3, 4, 2, 2, 2, 7, 8, 2, 3, 3, 3, 7};
-        int[] res = new Solution().removeIt(a);
+        int[] b = {1, 1, 2, 1, 2, 2, 3, 5, 3, 1, 4, 4, 4};
+        int[] res = new int[0];
+        try {
+            res = new Solution().removeIt(a);
+        } catch (CustomExceptions customExceptions) {
+            customExceptions.printStackTrace();
+        }
         for (int i : res) System.out.print(i + "\t");
     }
 }

@@ -8,7 +8,7 @@ public class Handlers {
         return false;
     }
 
-    static <T> int getNextPosition(ArrayList<T> arr, T el) {//gets position of next element
+    static <T> int getNextPosition(ArrayList<T> arr, T el) {//gets position of next occurrence of  element
         int i;
         for (i = 0; i < arr.size(); i++) {
             if (arr.get(i) == el) break;
@@ -114,5 +114,16 @@ public class Handlers {
             array_list.add(arr[i]);
         System.out.print(array_list);
         return array_list;
+    }
+
+    static int countAverage(ArrayList<Integer> numbers, ArrayList<Integer> quantity) throws CustomExceptions {
+        if (numbers.size() != quantity.size()) throw new CustomExceptions("ArrayLists are not the same size");
+        int res, elems;
+        res = elems = 0;
+        for (int i = 0; i < numbers.size(); i++) {
+            res+=(numbers.get(i)*quantity.get(i));
+            elems+=quantity.get(i);
+        }
+        return res/elems;
     }
 }

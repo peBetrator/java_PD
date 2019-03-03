@@ -10,7 +10,7 @@ public class Solution {
         int cherries = 0;
         int steps = 0;
         LinkedList<Integer> storePosX = new LinkedList<>();
-        LinkedList<Integer> storePosY = new LinkedList<>();
+        LinkedList<Integer> storePosY = new LinkedList<>(); //stored moves
         for (int i = 0; i < arr.length; ) {
             for (int j = 0; j < arr.length; ) {
                 steps++;
@@ -29,7 +29,7 @@ public class Solution {
                     if (arr[i + 1][j] != 1) {
                         i++;
                         continue;
-                    } else {
+                    } else { //if dead end
                         if (arr[i][j] == -1) {//check if already've been here
                             cherries--;
                         }
@@ -47,7 +47,7 @@ public class Solution {
                     if (arr[i][j + 1] != 1) {
                         j++;
                         continue;
-                    } else {
+                    } else { //if dead end
                         if (arr[i][j] == -1) {//check if already've been here
                             cherries--;
                         }
