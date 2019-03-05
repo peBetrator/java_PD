@@ -1,16 +1,18 @@
+package jdbc.tasks;
+
 import java.sql.*;
 
 public class SelectQuery {
-    public void selectColors(Statement statement) throws SQLException {
-        ResultSet select = statement.executeQuery("SELECT Color FROM [AdventureWorksLT_MNegaliuc].[SalesLT].[Product] GROUP BY Color");
+    public void selectColors(Statement statement, String tablename) throws SQLException {
+        ResultSet select = statement.executeQuery("SELECT Color FROM " + tablename + " GROUP BY Color");
 
         while (select.next()) {
             System.out.println(select.getString("color"));
         }
     }
 
-    public void selectAllProducts(Statement statement) throws SQLException {
-        ResultSet select = statement.executeQuery("SELECT * FROM [AdventureWorksLT_MNegaliuc].[SalesLT].[Product]");
+    public void selectAllProducts(Statement statement, String tablename) throws SQLException {
+        ResultSet select = statement.executeQuery("SELECT * FROM " + tablename);
         ResultSetMetaData md = select.getMetaData();
         int colCount = md.getColumnCount();
 
@@ -28,8 +30,8 @@ public class SelectQuery {
         }
     }
 
-    public void selectAllSales(Statement statement) throws SQLException {
-        ResultSet select = statement.executeQuery("select * from [AdventureWorksLT_MNegaliuc].[SalesLT].[Sales]");
+    public void selectAllSales(Statement statement, String tablename) throws SQLException {
+        ResultSet select = statement.executeQuery("select * from " + tablename);
         ResultSetMetaData md = select.getMetaData();
         int colCount = md.getColumnCount();
 

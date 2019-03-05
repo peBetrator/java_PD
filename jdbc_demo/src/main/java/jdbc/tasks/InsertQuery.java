@@ -1,8 +1,10 @@
+package jdbc.tasks;
+
 import java.sql.*;
 
 public class InsertQuery {
-    public void populateDataInSales(Statement statement) throws SQLException {
-        int rowsAffected = statement.executeUpdate("INSERT INTO [AdventureWorksLT_MNegaliuc].[SalesLT].[Sales] (SalesOrderID,SalesOrderDetailID,OrderQty,ProductID,UnitPrice,UnitPriceDiscount,rowguid,ModifiedDate)" +
+    public void populateDataInSales(Statement statement, String tablename) throws SQLException {
+        int rowsAffected = statement.executeUpdate("INSERT INTO " + tablename + " (SalesOrderID,SalesOrderDetailID,OrderQty,ProductID,UnitPrice,UnitPriceDiscount,rowguid,ModifiedDate)" +
                 "values (26271,110562,1,836,356.89,0.00,'1','2008-06-01 00:00:00.000')," +
                 "(26272,110563,1,822,356.89,0.00,'2','2008-06-01 00:00:00.000')," +
                 "(26273,110567,1,907,163.90,0.00,'3','2008-06-01 00:00:00.000')," +

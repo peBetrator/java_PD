@@ -1,8 +1,10 @@
+package jdbc.tasks;
+
 import java.sql.*;
 
 public class CreateQuery {
-    public void createTable(Statement statement) throws SQLException {
-        String sql = "CREATE TABLE [AdventureWorksLT_MNegaliuc].[SalesLT].[Sales](" +
+    public void createTable(Statement statement, String tablename) throws SQLException {
+        String sql = "CREATE TABLE " + tablename + " (" +
                 "SalesOrderID int NOT NULL," +
                 "SalesOrderDetailID int NOT NULL," +
                 "OrderQty smallint NOT NULL," +
