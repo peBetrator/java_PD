@@ -34,12 +34,10 @@ public class Solution {
                             cherries--;
                         }
                         arr[i][j] = 1;
-                        storePosX.removeLast();
-                        storePosY.removeLast();
+                        removeLast(storePosX, storePosY);
                         i = storePosX.peekLast();
                         j = storePosY.peekLast();
-                        storePosX.removeLast();
-                        storePosY.removeLast();
+                        removeLast(storePosX, storePosY);
                         continue;
                     }
                 }
@@ -52,12 +50,10 @@ public class Solution {
                             cherries--;
                         }
                         arr[i][j] = 1;
-                        storePosX.removeLast();
-                        storePosY.removeLast();
+                        removeLast(storePosX, storePosY);
                         i = storePosX.peekLast();
                         j = storePosY.peekLast();
-                        storePosX.removeLast();
-                        storePosY.removeLast();
+                        removeLast(storePosX, storePosY);
                         continue;
                     }
                 }
@@ -80,16 +76,19 @@ public class Solution {
                         cherries--;
                     }
                     arr[i][j] = 1;
-                    storePosX.removeLast();
-                    storePosY.removeLast();
+                    removeLast(storePosX, storePosY);
                     i = storePosX.peekLast();
                     j = storePosY.peekLast();
-                    storePosX.removeLast();
-                    storePosY.removeLast();
+                    removeLast(storePosX, storePosY);
                     continue;
                 }
             }
         }
         return -1;
+    }
+
+    private void removeLast(LinkedList<Integer> x, LinkedList<Integer> y) {
+        x.removeLast();
+        y.removeLast();
     }
 }

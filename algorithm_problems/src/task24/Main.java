@@ -21,10 +21,10 @@ public class Main {
                 {0, 1, 1, 0, 0},
                 {0, 0, 1, 2, 0}};
         populateArr(arr);
-//        showArr(arr);
-//        System.out.println(new Solution().moreCherries(arr) + " cherries");
-        showArr(constArr);
-        System.out.println(new Solution().moreCherries(constArr) + " cherries");
+        showArr(arr);
+        System.out.println(new Solution().moreCherries(arr) + " cherries");
+//        showArr(constArr);
+//        System.out.println(new Solution().moreCherries(constArr) + " cherries");
     }
 
     public static void populateArr(int[][] arr) {
