@@ -1,8 +1,8 @@
 package jdbc.tasks;
 
+import jdbc.tasks.crud.*;
 import populators.PopulateData;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -27,23 +27,20 @@ public class Main {
         //populates random data in .csv
         new PopulateData().moreData("data.csv", 999);
 
-        String dbUrl = "jdbc:sqlserver://MDCH-QA-TRAIN2";
-        String user = "sa";
-        String pass = "MDCH-TRAIN2SA";
         String destinationTable = "AdventureWorksLT_YBakhtina.SalesLT.Sales";
 
         //sets up connection with database
-        java.sql.Connection myCon = DriverManager.getConnection(dbUrl, user, pass);
-        Statement myStmt = myCon.createStatement();
+        DatabaseConnection myCon = DatabaseConnection.getInstance();
+        Statement myStmt = myCon.getConnection().createStatement();
 
         //tasks
         new SelectQuery().selectAllSales(myStmt, destinationTable);
         new UpdateQuery().updadeOrderQty(myStmt, destinationTable);
         new DeleteQuery().deleteOrders(myStmt, destinationTable);
         new InsertQuery().populateDataInSales(myStmt, destinationTable);
-        new BulkInsert().hereComesThatData(myCon, myStmt, destinationTable);
+        new BulkInsert().hereComesThatData(myCon.getConnection(), myStmt, destinationTable);
 
         myStmt.close();
-        myCon.close();
+        myCon.getConnection().close();
     }
 }

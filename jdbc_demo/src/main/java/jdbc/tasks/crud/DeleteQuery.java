@@ -1,4 +1,4 @@
-package jdbc.tasks;
+package jdbc.tasks.crud;
 
 import java.sql.SQLException;
 import java.sql.Statement;
