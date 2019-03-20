@@ -9,10 +9,19 @@ public class Solution {
     public int moreCherries(int[][] arr) {
         int cherries = 0;
         int steps = 0;
+        boolean goBack = false;
         LinkedList<Integer> storePosX = new LinkedList<>();
         LinkedList<Integer> storePosY = new LinkedList<>(); //stored moves
         for (int i = 0; i < arr.length; ) {
             for (int j = 0; j < arr.length; ) {
+                if (goBack) {//steps back; moved into separate if() to avoid code repetition in each dead end case
+                    removeLast(storePosX, storePosY);
+                    i = storePosX.peekLast();
+                    j = storePosY.peekLast();
+                    removeLast(storePosX, storePosY);
+                    goBack = false;
+                    continue;
+                }
                 steps++;
                 System.out.println("[" + i + "]; [" + j + "]");
                 storePosX.add(i);
@@ -34,10 +43,7 @@ public class Solution {
                             cherries--;
                         }
                         arr[i][j] = 1;
-                        removeLast(storePosX, storePosY);
-                        i = storePosX.peekLast();
-                        j = storePosY.peekLast();
-                        removeLast(storePosX, storePosY);
+                        goBack = true;
                         continue;
                     }
                 }
@@ -50,10 +56,7 @@ public class Solution {
                             cherries--;
                         }
                         arr[i][j] = 1;
-                        removeLast(storePosX, storePosY);
-                        i = storePosX.peekLast();
-                        j = storePosY.peekLast();
-                        removeLast(storePosX, storePosY);
+                        goBack = true;
                         continue;
                     }
                 }
@@ -76,10 +79,7 @@ public class Solution {
                         cherries--;
                     }
                     arr[i][j] = 1;
-                    removeLast(storePosX, storePosY);
-                    i = storePosX.peekLast();
-                    j = storePosY.peekLast();
-                    removeLast(storePosX, storePosY);
+                    goBack = true;
                     continue;
                 }
             }
