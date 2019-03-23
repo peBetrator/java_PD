@@ -1,5 +1,6 @@
 package app.servlets;
 
+import app.entities.User;
 import app.model.Model;
 
 import javax.servlet.RequestDispatcher;
@@ -17,8 +18,13 @@ public class ListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Model model = Model.getInstance();
-        List<String> names = model.list();
-        req.setAttribute("userNames", names);
+
+        List<User> users = model.list();
+        req.setAttribute("users", users);
+
+//        List<String> names = model.list();
+//        req.setAttribute("userNames", names);
+//        req.setAttribute("passWords", pass);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/list.jsp");
         requestDispatcher.forward(req, resp);

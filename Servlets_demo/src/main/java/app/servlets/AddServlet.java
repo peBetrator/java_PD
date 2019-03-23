@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet(name = "add", urlPatterns = "/add")
 public class AddServlet extends HttpServlet {
@@ -22,10 +21,12 @@ public class AddServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Model model = Model.getInstance();
         String name = req.getParameter("name");
         String password = req.getParameter("pass");
-        User user = new User(name, password);
-        Model model = Model.getInstance();
+        User user;
+        if (model.getLastId() > 0) user = new User(model.getLastId() + 1, name, password);
+        else user = new User(1, name, password);
         model.add(user);
 
         req.setAttribute("userName", name);

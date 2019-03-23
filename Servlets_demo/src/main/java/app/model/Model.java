@@ -1,6 +1,7 @@
 package app.model;
 
 import app.entities.User;
+import org.graalvm.compiler.lir.LIRInstruction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +24,36 @@ public class Model {
         model.add(user);
     }
 
-    public List<String> list() {
+    public int getLastId() {
+        return model.size() > 0 ? model.get(model.size() - 1).getId() : 0;
+    }
+
+    public List<String> getUsername() {
         return model.stream()
                 .map(User::getName)
                 .collect(Collectors.toList());
+    }
+
+    public List<String> getPassword() {
+        return model.stream()
+                .map(User::getPassword)
+                .collect(Collectors.toList());
+    }
+
+    public List<Integer> getId() {
+        return model.stream()
+                .map(User::getId)
+                .collect(Collectors.toList());
+    }
+
+    public List<User> list() {
+        return model;
+    }
+
+    public User getUserById(int id) {
+        for (int i = 0; i < model.size(); i++) {
+            if (model.get(i).getId() == id) return model.get(i);
+        }
+        return null;
     }
 }

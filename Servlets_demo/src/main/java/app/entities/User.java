@@ -3,13 +3,23 @@ package app.entities;
 public class User {
     private String name;
     private String password;
+    private int id;
 
     public User() {
     }
 
-    public User(String name, String password) {
+    public User(int id, String name, String password) {
         this.name = name;
         this.password = password;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -31,7 +41,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "ID='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
