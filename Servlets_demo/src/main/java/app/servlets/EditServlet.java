@@ -22,30 +22,27 @@ public class EditServlet extends HttpServlet {
         if (sid != null) {
             int id = Integer.parseInt(sid);
             user = model.getUserById(id);
-            System.out.println(user.getName());
-            System.out.println(user.getPassword());
             req.setAttribute("name", user.getName());
             req.setAttribute("pass", user.getPassword());
             req.setAttribute("id", sid);
         }
-        System.out.println(req.getParameter("id"));
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/edit.jsp");
         requestDispatcher.forward(req, resp);
     }
 
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        Model model = Model.getInstance();
-//        String sid = req.getParameter("id");
-//        String newName = req.getParameter("name");
-//        String newPass = req.getParameter("pass");
-//
-//        if (sid != null) {
-//            int id = Integer.parseInt(sid);
-//            model.getUserById(id).setName(newName);
-//            model.getUserById(id).setPassword(newPass);
-//        }
-//        doGet(req, resp);
-//    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Model model = Model.getInstance();
+        String sid = req.getParameter("id");
+        String newName = req.getParameter("name");
+        String newPass = req.getParameter("pass");
+
+        if (sid != null) {
+            int id = Integer.parseInt(sid);
+            model.getUserById(id).setName(newName);
+            model.getUserById(id).setPassword(newPass);
+        }
+        doGet(req, resp);
+    }
 }
