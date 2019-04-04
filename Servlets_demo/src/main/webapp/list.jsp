@@ -36,7 +36,7 @@
                             "hidden" + " name=" +
                             "id" + " value=" +
                             users.get(i).getId() + " />" +
-                            "</form></td></tr>");
+                            "</form></td>   </tr>");
 
                 }
                 out.println("</table>");

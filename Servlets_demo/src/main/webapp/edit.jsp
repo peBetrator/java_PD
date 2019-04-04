@@ -19,20 +19,24 @@
             <h2>Edit user</h2>
         </div>
         <%
-            String name = (String) request.getAttribute("name");
-            String pass = (String) request.getAttribute("pass");
-            String id = (String) request.getAttribute("id");
+            if (request.getAttribute("edit") != null) out.println("<p>User was edited!</p>");
+            else {
+                String name = (String) request.getAttribute("name");
+                String pass = (String) request.getAttribute("pass");
+                String id = (String) request.getAttribute("id");
 
-            if (name != null && pass != null) {
-                out.print("<form method=\"post\">");
-                out.print("<label>Name:");
-                out.print("<input type=\"text\" name=\"name\" value=" + name + "></br></label>");
-                out.print("<label>Password:");
-                out.print("<input type=\"text\" name=\"pass\" value=" + pass + "></br></label>");
-                out.print("<input type=\"hidden\" name=\"id\" value=" + id + ">");
-                out.print("<button type=\"submit\">Submit</button>");
-                out.print("</form>");
-            } else out.println("<p>Something went wrong!</p>");
+                if (name != null && pass != null) {
+                    out.print("<form method=\"post\">");
+                    out.print("<label>Name:");
+                    out.print("<input type=\"text\" name=\"name\" value=" + name + "></br></label>");
+                    out.print("<label>Password:");
+                    out.print("<input type=\"text\" name=\"pass\" value=" + pass + "></br></label>");
+                    out.print("<input type=\"hidden\" name=\"id\" value=" + id + ">");
+                    out.println("<button type=\"submit\">Submit</button>");
+                    out.println("</form>");
+                    out.print("<div><a href='DeleteServlet?id=" + id + "'>delete</a></div>");
+                } else out.println("<p>Something went wrong!</p>");
+            }
         %>
     </div>
 </div>

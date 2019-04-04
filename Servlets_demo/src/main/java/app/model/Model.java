@@ -56,4 +56,11 @@ public class Model {
         }
         return null;
     }
+
+    public void remove(int id) {
+        System.out.print("id = " + id + " " + model.size());
+        for (int i = 0; i < model.size(); i++) {
+            if (id == model.get(i).getId()) model.remove(i);
+        }
+    }
 }

@@ -35,13 +35,14 @@ public class EditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Model model = Model.getInstance();
         String sid = req.getParameter("id");
-        String newName = req.getParameter("name");
-        String newPass = req.getParameter("pass");
 
         if (sid != null) {
             int id = Integer.parseInt(sid);
+            String newName = req.getParameter("name");
+            String newPass = req.getParameter("pass");
             model.getUserById(id).setName(newName);
             model.getUserById(id).setPassword(newPass);
+            req.setAttribute("edit", 1);
         }
         doGet(req, resp);
     }
