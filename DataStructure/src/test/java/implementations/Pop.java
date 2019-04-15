@@ -41,7 +41,4 @@ public class Pop {
 
         assertEquals("Stack{arr=[]}", stack.toString());
     }
-
-
-
 }

@@ -1,3 +1,4 @@
+import implementations.Peek;
 import implementations.Pop;
 import implementations.Push;
 import org.junit.runner.JUnitCore;
@@ -6,7 +7,7 @@ import org.junit.runner.notification.Failure;
 
 public class TestRunner {
     public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(Pop.class, Push.class);
+        Result result = JUnitCore.runClasses(Pop.class, Push.class, Peek.class);
         for (Failure failure : result.getFailures()) {
             System.out.println(failure.toString());
         }

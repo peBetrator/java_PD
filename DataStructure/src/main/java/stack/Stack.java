@@ -1,5 +1,7 @@
 package stack;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Stack<T> {
@@ -13,7 +15,6 @@ public class Stack<T> {
         for (int i = 0; i < arr.length; i++) {
             this.arr[i] = arr[i];
         }
-
     }
 
     public void push(T element) {
@@ -31,7 +32,7 @@ public class Stack<T> {
     public void pop() {
         try {
             this.arr = Arrays.copyOf(arr, getSize() - 1);
-        } catch (NegativeArraySizeException e) {
+        } catch (NegativeArraySizeException | NullPointerException exception) {
             System.out.println("Nothing to pop\nThere are no elements left in Stack");
         }
     }
@@ -50,6 +51,74 @@ public class Stack<T> {
         } catch (NullPointerException e) {
             return true;
         }
+    }
+
+    public void reverse() {
+        for (int i = 0; i < getSize() / 2; i++) {
+            T temp = arr[i];
+            this.arr[i] = arr[getSize() - i - 1];
+            this.arr[getSize() - i - 1] = temp;
+        }
+    }
+
+    public void readFromFile(String filePath) {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            System.out.println(filePath + " does not exist.");
+            return;
+        }
+        if (!(file.isFile() && file.canRead())) {
+            System.out.println(file.getName() + " cannot be read from.");
+            return;
+        }
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            char current;
+            //TODO push chars to stack, not ints
+            Object ch;
+            while (fis.available() > 0) {
+                ch = fis.read();
+                push((T) ch);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean checkDelimeters() {
+        ArrayList<Integer> brackets = new ArrayList<>();
+        brackets.add(40);// (
+        brackets.add(41);// )
+        brackets.add(91);// [
+        brackets.add(93);// ]
+        brackets.add(123);// {
+        brackets.add(125);// }
+
+        Stack<Integer> myBr = new Stack<>();
+        for (int i = 0; i < getSize(); i++) {
+            if (brackets.contains((int) arr[i])) {
+                myBr.push((int) arr[i]);
+            }
+        }
+        if (myBr.getSize() % 2 != 0) return false;
+        else return correctBrackets(myBr);
+    }
+
+    private int getBracket(int i) {
+        return (int) arr[i];
+    }
+
+    private boolean correctBrackets(Stack<Integer> stack) {
+        boolean res = true;
+        for (int i = stack.getSize() / 2; i >= 0; i--) {
+            if (stack.getBracket(i) == 40) {
+                res = stack.getBracket(stack.getSize() - i - 1) == 41;
+            } else {
+                res = stack.getBracket(stack.getSize() - i - 1) - stack.getBracket(i) == 2;
+            }
+
+        }
+        return res;
     }
 
     @Override
